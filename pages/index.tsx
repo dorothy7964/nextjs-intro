@@ -1,19 +1,26 @@
-/**
- * URL의 이름은 파일명이 된다.
- * index 는 예외이다.
- *  - http://localhost:3000/ - 기본
- *  - http://localhost:3000/index.tsx - X
- *
- * - 컴포넌트명은 중요하지 않다.
- * - 컴포넌트를 `export default function` 을 해주어야 한다.
- *
- * 라우터를 별도 설정해주지 않아도 된다.
- * - router를 만들고 routes를 설계하고 component를 import하지 않아도 된다.
- * - router를 render하는 모든 것을 프레임크인 next.js가 처리한다.
- *
- * 404 페이지를 자동으로 만들어 준다.
- *  - React에서는 직접 만들어줘야 한다.
- * */
+import { useState } from "react";
+
 export default function Home() {
-  return "hi";
+  const [counter, setCounter] = useState(0);
+
+  return (
+    <div>
+      <h1>Hello {counter}</h1>
+      <button onClick={() => setCounter((prev) => prev + 1)}>+</button>
+    </div>
+  );
 }
+
+/**
+ * hydration
+ *  : pre-render된 페이지에 react의 반응성을 입히는 것
+ *
+ *  next.js는 react.js를 백엔드에서 동작시켜서 컴포넌트를 render시키고
+ *  렌더링이 끝났을 때 HTML이 되고 next.js는 그 HTML을 페이지의 소스코드에 넣어준다.
+ *  그리고 react.js가 로딩 되었을 때, 기본적으로 이미 존재하는 것들과 연결되어 상호작용한다.
+ *
+ *  유저는 자바스크립트와 react.js가 로딩되지 않더라도 콘텐츠를 볼 수 있다.
+ *  유저가 웹사이트에 가면 초기 상태의 컴포넌트로 된 미리 생성된 HTML페이지를 보게 되고 상호작용이 일어나면 react.js는 그걸 받아서 작동하게 된다.
+ *
+ *  SEO에 좋음, 구글 검색 엔진에게도 유저에게 좋음.
+ */
