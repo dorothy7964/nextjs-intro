@@ -37,6 +37,59 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 <hr>
 
+<br/><br/>
+
+## Next.js
+
+<aside>
+◽ **NextJS 동작**
+
+NextJS가 백엔드 상에서 ReactJS를 돌리고 있고
+
+NextJS가 페이지를 pre-generate(사전생성)할거고, 그건 HTML페이지가 된다
+
+유저가 그 웹사이트에 들어갈 때 유저는 그 HTML을 볼 수 있다.
+
+유저는 백지화면이라든가 로딩 스테이지는 없을 것이다.
+
+유저가 모든 자바스크립트를 다운로드 한 후에,
+
+ReactJS가 다시 주도권을 가져와서 모든게 일반적인 ReactJS처럼 동작한다.
+
+그래서 useState같은 평범한 ReactJS의 모든 걸 사용할 수 있는 것이다.
+
+</aside>
+
+- Next 특징
+
+  - `hybrid static & server rendering`
+  - 기본적으로 SSG를 이용해 정적인 페이지를 미리 생성하여 SEO에 유리하다.
+  - 데이터가 바뀌지 않는 페이지는 SSG를 사용한다.
+    - 블로그, 포트폴리오, 메뉴얼 등
+  - 유저의 요청마다 데이터가 변경될 수 있는 페이지는 SSR을 사용해야 한다.
+    - 맞춤 추천리스트, 장바구니 페이지 등
+
+- **Next.js에서 미리 렌더링 하는 방식은 두 가지**
+
+  1. SSG(Static-site Generation)
+     - 빌드 타임에 HTML에 생성되어 매 요청마다 이를 재사용
+  2. SSR(Server-side Rendering)
+     - 매 요청마다 HTML을 생성
+
+- **렌더링 순서**
+  - Next.js가 먼저 Server를 거친 후에 Client가 렌더링된다.
+- **Hydration이란**
+  - Next.js는 서버에서 HTML을 문자열로 가져온 후에,
+    클라이언트에서 서버에서 보내준 HTML을 `hydrate()` 혹은 `render()`하여 브라우저에 렌더링된다. 이 일련의 과정을 **Hydration**이라 한다.
+  - **React**는 클라이언트 렌더링만 있어서 유저에게 보여줄 HTML, CSS 그리고 자바스크립트 모두 render() 함수를 이용해 생성하여, React가 어떤 DOM을 렌더하는지 알려준다.
+  - 반면, Next.js는 서버에서 보여줄 HTML 컨텐츠를 가져오기 때문에 재차 render() 함수로 HTML을 생성하여 DOM을 그리는 일은 비효율적이다. 따라서 hydrate() 함수로 서버에서 받아온 HTML에 유저가 상호작용할 수 있는 이벤트 리스너만 연결하는 것이다.
+
+<br/><br/>
+
+<hr>
+
+<br/><br/>
+
 ## Pages 특징
 
 `파일명 = URL`
@@ -45,6 +98,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
   - 컴포넌트명은 중요하지 않다.
   - 컴포넌트를 `export default function` 을 해주어야 한다.
+
     ```jsx
     // pages/about.tsx -> URL의 이름은 파일명이 된다.
 
@@ -60,7 +114,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
     export default Potato; // export default를 꼭 해줘야 한다.
     ```
+
   - `pages/index` 는 예외이다.
+
     ```jsx
     // pages/index.tsx
 
@@ -68,6 +124,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
       return "hi";
     }
     ```
+
     - http://localhost:3000/index.tsx → 페이지가 나오지 않는다.
     - http://localhost:3000/ → 기본
 
@@ -88,6 +145,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
   - 앱에 있는 페이지들이 미리 렌더링 된다.
 
 - **hydration**
+
   ```jsx
   // pages/index.tsx
 
@@ -104,11 +162,12 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     );
   }
   ```
+
   - next.js는 초기 상태로 pre-rendering을 한다.
   - counter 초기값 0이 HTML에 나온다.
   - react.js가 (클라이언트로)전송됐을 때 react.js 앱이 된다.
   - react.js를 프론트엔드 안에서 실행하는 걸 hydration이라고 부른다.
-  **동작**
+    **동작**
   - next.js는 react.js를 백엔드에서 동작시켜서 컴포넌트를 render시키고
   - 렌더링이 끝났을 때 HTML이 되고 next.js는 그 HTML을 페이지의 소스코드에 넣어준다.
   - 그리고 react.js가 로딩 되었을 때, 기본적으로 이미 존재하 것들과 연결되어 상호작용한다.
