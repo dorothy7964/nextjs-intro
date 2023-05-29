@@ -42,8 +42,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Next.js
 
 <aside>
-◽ **NextJS 동작**
-
 NextJS가 백엔드 상에서 ReactJS를 돌리고 있고
 
 NextJS가 페이지를 pre-generate(사전생성)할거고, 그건 HTML페이지가 된다
@@ -59,6 +57,8 @@ ReactJS가 다시 주도권을 가져와서 모든게 일반적인 ReactJS처럼
 그래서 useState같은 평범한 ReactJS의 모든 걸 사용할 수 있는 것이다.
 
 </aside>
+
+<br/>
 
 - Next 특징
 
