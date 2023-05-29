@@ -27,10 +27,3 @@ export default function NavBar() {
     </nav>
   );
 }
-
-/* 
-  - styled jsx는 NextJS 고유의 방법
-  - <style>태그 (HTML 태그) 사용
-  - 컴포넌트마다 독릭접적으로 사용 가능
-  - 컴포넌트 내부 한정 범위이다.
-*/

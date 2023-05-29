@@ -20,8 +20,3 @@ body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   color: rgb(var(--foreground-rgb));
 }
-/* 
-  : NextJS로 앱을 만들 때 global css파일을 import 할 수 없다.
-  : 페이지나 컴포넌트 내에 css를 import 하고 싶다면, module 이어야 한다.
-  : _app 에서는 Global Styles를 import 할 수 있다.
-*/
